@@ -56,12 +56,20 @@ function check(thistopic, correctanswer) {
   document.getElementById(`${thistopic}-button`).disabled = true;
   document.getElementById(`${thistopic}`).disabled = true;
   let answervalue = document.getElementById(thistopic).value;
+  let is_correct = false;
   if (+answervalue == +correctanswer) {
       alert("Correct");
+      is_correct = true;
       totalScore++;
   } else {
       alert("Not Correct");
   }
+
+  send_post(JSON.stringify({
+    title: "answer",
+    topic: thistopic,
+    correct: is_correct
+  }))
 }
 
 function send_post(message_body){
@@ -72,7 +80,7 @@ function send_post(message_body){
     "Content-type": "application/json; charset=UTF-8"
   }
   })
-  .then((response) => response.json())
+  .then((response) => {response.json()})
   .then((json) => console.log(json));
 }
 
