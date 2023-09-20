@@ -29,6 +29,5 @@ for (var j = 0; j < data.history.length; j++) {
   cell1.innerHTML = rowData.name; //insert words
   cell2.innerHTML = rowData.score;
 }
-
 // update table
 tableContainer.appendChild(table);
