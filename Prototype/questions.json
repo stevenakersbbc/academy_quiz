@@ -51,6 +51,25 @@
             "d": "Because roses were a symbol of peace during this time."
           },
           "CorrectAnswer": 3
+        },
+        {
+          "Link": "https://www.youtube.com/embed/t0_WPxfF8K0",
+          "One" : {
+            "Question": "The Roman Empire started in 27bc",
+            "Answer": "true"
+          },
+          "Two" : {
+            "Question": "The empire is a collective group of countries who are run by different leaders",
+            "Answer": "false"
+          },
+          "Three": {
+            "Question": "The Roman Empire divided in 476bc",
+            "Answer": "false"
+          },
+          "Four": {
+            "Question": "The Roman Empire had around 100 million habitants",
+            "Answer": "true"
+          }
         }
       ]
     },
@@ -105,6 +124,25 @@
             "d": "Caledonian Canal"
           },
           "CorrectAnswer": 1
+        },
+        {
+          "Link":"https://www.youtube.com/embed/Wg-pFtvsvmo",
+          "One": {
+            "Question": "America is a continent",
+            "Answer": "false"
+          },
+          "Two": {
+            "Question": "There are 7 continents",
+            "Answer": "true"
+          },
+          "Three": {
+            "Question": "About 40% of the earth surface is covered in water",
+            "Answer": "false"
+          },
+          "Four": {
+            "Question": "There are five oceans",
+            "Answer": "true"
+          }
         }
       ]
     },
@@ -159,6 +197,25 @@
             "d": "Jacinda Ardern"
           },
           "CorrectAnswer": 1
+        },
+        {
+          "Link":"https://www.youtube.com/embed/2-IFEUntcZc",
+          "One": {
+            "Question": "Government is a group of people who make rules",
+            "Answer": "true"
+          },
+          "Two": {
+            "Question": "The word government comes from a latin word",
+            "Answer": "false"
+          },
+          "Three": {
+            "Question":"Monarchy is when the country is ruled by a prime minister",
+            "Answer": "false"
+          },
+          "Four": {
+            "Question": "There are three types of movement; monarchy, democracy and dictatorship",
+            "CorrectAnswer": "true"
+          }
         }
       ]
     },
@@ -213,6 +270,25 @@
             "d": "IUCN (International Union for Conservation of Nature)"
           },
           "CorrectAnswer": 1
+        },
+        {
+          "Link":"https://www.youtube.com/embed/pEx6XeBh1yE",
+          "One": {
+            "Question": "In the vertical forest, the amount of trees would normally fill two hectares of woodland",
+            "Answer": "true"
+          },
+          "Two": {
+            "Question": "The vertical forest is in Salford",
+            "Answer": "false"
+          },
+          "Three": {
+            "Question": "Two million trees have been planted in the last 45 years in Singapore",
+            "Answer": "true"
+          },
+          "Four": {
+            "Question": "To help with conservation, the waterways are not cleaned",
+            "Answer": "false"
+          }
         }
       ]
     },
@@ -267,6 +343,25 @@
             "d": "Frank Lampard"
           },
           "CorrectAnswer": 1
+        },
+        {
+          "Link":"https://www.youtube.com/embed/oaFHXOsAMi0",
+          "One": {
+            "Question": "Joe doesn’t like footbal",
+            "Answer": "false"
+          },
+          "Two": {
+            "Question": "Joe plays football with his little sister Bella",
+            "Answer": "true"
+          },
+          "Three": {
+            "Question": "Bella usually missed the ball when playing football",
+            "Answer": "true"
+          },
+          "Four": {
+            "Question": "The football coach is called Mr Burnley",
+            "Answer": "false"
+          }
         }
       ]
     },
@@ -321,6 +416,25 @@
             "d": "Injunction"
           },
           "CorrectAnswer": 4
+        },
+        {
+          "Link":"https://www.youtube.com/embed/TyP09S0UEzA",
+          "One": {
+            "Question": "Rights allow people to do whatever they want",
+            "Answer": "false"
+          },
+          "Two": {
+            "Question": "Laws are a set of rules that protect people and the things they own",
+            "Answer": "true"
+          },
+          "Three": {
+            "Question": "A responsibility is a duty or something that people must not do",
+            "Answer": "false"
+          },
+          "Four": {
+            "Question": "Laws help citizens live safely and fairly with one another",
+            "Answer": "true"
+          }
         }
       ]
     },
@@ -375,6 +489,25 @@
             "d": "The Kentucky Derby"
           },
           "CorrectAnswer": 1
+        },
+        {
+          "Link":"https://www.youtube.com/embed/oaFHXOsAMi0",
+          "One": {
+            "Question": "The kings and queens were considered celebrities",
+            "Answer": "true"
+          },
+          "Two": {
+            "Question": "The word celebrities were founded in 1900s",
+            "Answer": "false"
+          },
+          "Three": {
+            "Question": "Wilde was one of the first celebrities who became famous",
+            "Answer": "true"
+          },
+          "Four": {
+            "Question": "Andy Warhol used 18th century technology to promote himself",
+            "Answer": "false"
+          }
         }
       ]
     }
