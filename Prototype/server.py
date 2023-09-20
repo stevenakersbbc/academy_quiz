@@ -8,7 +8,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
-        self.wfile.write(jsonData.encode())
+        self.wfile.write(json.dumps(jsonData, ensure_ascii=True).encode('utf-8'))
 
     #Add a post method to allow metrics sending back
     
