@@ -48,6 +48,19 @@ function check(thistopic, correctanswer) {
   document.getElementById(`${thistopic}`).disabled = true;
   let answervalue = document.getElementById(thistopic).value;
   if (+answervalue == +correctanswer) {
+    fetch("http://localhost:4000", {
+    method: "POST",
+    body: JSON.stringify({
+      userId: 1,
+      title: "Fix my bugs",
+      completed: false
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
       alert("Correct");
   } else {
       alert("Not Correct");
