@@ -1,5 +1,29 @@
 let totalScore = 0;
 let questionCount = 0;
+let topicResults = {}
+
+function incrementTopic(topicName, correct) {
+  if (topicName in topicResults) {
+    list = topicResults[topicName];
+    //May need to reaasign?
+    list[0] += correct ? 1 : 0;
+    list[1] += 1
+  } else {
+    topicResults[topicName] = [correct ? 1 : 0, 1]; //Create a new entry with either [0,1] or [1,1] which is [correct/total]
+  }
+}
+
+function topicBreakdown() {
+  let topicHTML = "";
+  for (topic in topicResults) {
+    let result = topicResults[topic];
+    topicHTML += `
+    ${topic} correct: ${result[0]}/${result[1]}
+    <br>
+    `;
+  }
+  return topicHTML;
+}
 
 function generateElements(data) {    
     data.quiz.forEach((category, index) => {
@@ -72,8 +96,10 @@ function check(thistopic, questionId, correctanswer) {
       alert("Correct");
       is_correct = true;
       totalScore++;
+      incrementTopic(thistopic, true);
   } else {
       alert("Not Correct");
+      incrementTopic(thistopic, false);
   }
 
   send_post(JSON.stringify({
@@ -99,9 +125,18 @@ function submitQuestions() {
   document.getElementById("mainContent").style.display = "none"
   document.getElementById("submit").style.display = "none"
 
-  //Create text with "You scored: x/y"
+  //Create text with "You scored: x% total!"
   let percentageResult = totalScore/questionCount * 100
   let roundedResult = Math.round(percentageResult * 10) / 10
-  let resultsHTML = `<div id=resultsText>You scored: ${roundedResult}%</div>`
+  let resultsHTML = `
+  <div id=resultsText>
+    You scored: ${roundedResult}% total!
+    <hr>
+    Total correct: ${totalScore}/${questionCount}
+    <br>
+    ${topicBreakdown()}
+  </div>
+  `
   document.getElementById("resultsArea").innerHTML += resultsHTML
+  console.log(topicResults)
 }
