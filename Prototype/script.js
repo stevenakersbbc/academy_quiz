@@ -2,14 +2,21 @@ let totalScore = 0;
 let questionCount = 0;
 let topicResults = {}
 
+//Used to track correct/incorrect
 function incrementTopic(topicName, correct) {
   if (topicName in topicResults) {
     list = topicResults[topicName];
-    //May need to reaasign?
     list[0] += correct ? 1 : 0;
     list[1] += 1
+  }
+}
+//Used to track total topic question count
+function incrementTopicTotal(topicName) {
+  if (topicName in topicResults) {
+    list = topicResults[topicName];
+    list[1] += 1
   } else {
-    topicResults[topicName] = [correct ? 1 : 0, 1]; //Create a new entry with either [0,1] or [1,1] which is [correct/total]
+    topicResults[topicName] = [0, 1]
   }
 }
 
@@ -30,7 +37,6 @@ function generateElements(data) {
       let categoryName = Object.keys(category)[0];
       let questions = data.quiz[index][categoryName]
       for (let i = 0; i < questions.length; i++) {
-        questionCount++;
         //Loops through each questions
         let currentQ = questions[i];
         let ques = currentQ.Question;
@@ -66,6 +72,9 @@ function generateElements(data) {
         </div>`;
 
         document.getElementById("mainContent").innerHTML += mytemplate;
+
+        questionCount++;
+        incrementTopicTotal(topic);
       }      
     })
   } 
@@ -129,10 +138,12 @@ function send_post(message_body){
 }
 
 function submitQuestions() {
+  //Hide the questions and the submit button
   document.getElementById("mainContent").style.display = "none"
   document.getElementById("submit").style.display = "none"
 
   //Create text with "You scored: x% total!"
+  //And create the breakdown of results per topic
   let percentageResult = totalScore/questionCount * 100
   let roundedResult = Math.round(percentageResult * 10) / 10
   let resultsHTML = `

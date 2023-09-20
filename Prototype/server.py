@@ -157,7 +157,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         json.dump(telemetry, open("telemetry.json", "w"))
         self.wfile.write("{\"recieved\":true}".encode('utf-8'))
 
-question_data = json.loads(open('questions.json').read())
+question_data = json.loads(open('finalQuestions.json').read())
+#question_data = json.loads(open('questions.json').read())
 leaderboard =  json.loads(open('questions.json').read())
 telemetry = json.loads(open('telemetry.json').read())
 httpd = HTTPServer(('localhost', 4000), SimpleHTTPRequestHandler)
