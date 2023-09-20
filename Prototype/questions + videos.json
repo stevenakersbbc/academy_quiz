@@ -1,0 +1,450 @@
+{
+  "History": [
+    {
+      "Question": "Who was the last Anglo-Saxon king of England?",
+      "Options": {
+        "a": "Harold Godwinson",
+        "b": "Edward the Confessor",
+        "c": "William the Conqueror",
+        "d": "Alfred the Great"
+      },
+      "CorrectAnswer": "a"
+    },
+    {
+      "Question": "Who was the first Tudor monarch of England?",
+      "Options": {
+        "a": "Henry VII",
+        "b": "Henry VIII",
+        "c": "Edward VI",
+        "d": "Mary I"
+      },
+      "CorrectAnswer": "a"
+    },
+    {
+      "Question": "Who was the first female monarch of England?",
+      "Options": {
+        "a": "Elizabeth I",
+        "b": "Mary I",
+        "c": "Victoria",
+        "d": "Anne"
+      },
+      "CorrectAnswer": "b"
+    },
+    {
+      "Question": "Who was the last monarch of the House of Stuart?",
+      "Options": {
+        "a": "James II",
+        "b": "Charles II",
+        "c": "William III",
+        "d": "Anne"
+      },
+      "CorrectAnswer": "d"
+    },
+    {
+      "Question": "The House of Lancaster and the House of York fought in the Wars of the Roses. Why was it called this?",
+      "Options": {
+        "a": "Because the wars were primarily fought in rose gardens.",
+        "b": "Because the leaders of both houses had the last name 'Rose.'",
+        "c": "Because the emblem of the House of Lancaster was a red rose, and the House of York was represented by a white rose.",
+        "d": "Because roses were a symbol of peace during this time."
+      },
+      "CorrectAnswer": "c",
+      
+    }
+    
+    {
+        "Link": "https://www.youtube.com/watch?v=t0_WPxfF8K0",
+        "Question":"The Roman Empire started in 27bc",
+        "CorrectAnswer": "True",
+        "Question":"The empire is a collective group of countries who are run by different leaders"
+        "CorrectAnswer":"False "
+        "Question":"The Roman Empire divided in 476bc"
+        "CorrectAnswer":"False"
+        "Question":"The Roman Empire had around 100 million habitants"
+        "CorrectAnswer":"True"
+    }
+    
+  ],
+  "Geography": [
+    {
+      "Question": "What is the highest mountain in the UK?",
+      "Options": {
+        "A": "Ben Nevis",
+        "B": "Snowdon",
+        "C": "Scafell Pike",
+        "D": "Helvellyn"
+      },
+      "CorrectAnswer": "A"
+    },
+    {
+      "Question": "What is the largest lake in the UK?",
+      "Options": {
+        "A": "Loch Ness",
+        "B": "Windermere",
+        "C": "Lough Neagh",
+        "D": "Loch Lomond"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "Which countries are part of the United Kingdom?",
+      "Options": {
+        "A": "England, Scotland, Wales, and Northern Ireland",
+        "B": "England, Scotland, Wales, and Ireland",
+        "C": "England, Scotland, Wales, and Isle of Man",
+        "D": "England, Scotland, Wales, and Channel Islands"
+      },
+      "CorrectAnswer": "A"
+    },
+    {
+      "Question": "Which country is not located in Great Britain?",
+      "Options": {
+        "A": "England",
+        "B": "Scotland",
+        "C": "Wales",
+        "D": "Northern Ireland"
+      },
+      "CorrectAnswer": "D"
+    },
+    {
+      "Question": "What is the longest canal in the UK?",
+      "Options": {
+        "A": "Grand Union Canal",
+        "B": "Leeds and Liverpool Canal",
+        "C": "Kennet and Avon Canal",
+        "D": "Caledonian Canal"
+      },
+      "CorrectAnswer": "A"
+    }
+    {
+        "Link":"https://www.youtube.com/watch?v=Wg-pFtvsvmo"
+        "Question":"America is a continent"
+        "CorrectAnswer":"False "
+        "Question":"There are 7 continents"
+        "CorrectAnswer":"True"
+        "Question":"About 40% of the earth surface is covered in water-"
+        "CorrectAnswer":"False"
+        "Question":"There are five oceans"
+        "CorrectAnswer":"True"
+    }
+    
+    
+    
+  ],
+  "Politics": [
+    {
+      "Question": "Who was the first British Prime Minister to win a General Election four times?",
+      "Options": {
+        "a": "Harold Wilson",
+        "b": "Winston Churchill",
+        "c": "Margaret Thatcher",
+        "d": "Tony Blair"
+      },
+      "CorrectAnswer": "a"
+    },
+    {
+      "Question": "Who was the longest-serving British Prime Minister of the 20th century?",
+      "Options": {
+        "a": "Margaret Thatcher",
+        "b": "Tony Blair",
+        "c": "Winston Churchill",
+        "d": "Harold Wilson"
+      },
+      "CorrectAnswer": "a"
+    },
+    {
+      "Question": "Who was the last British politician to hold all four of the prestigious posts: Prime Minister, Chancellor of the Exchequer, Foreign Secretary, and Home Secretary?",
+      "Options": {
+        "a": "James Callaghan",
+        "b": "Tony Blair",
+        "c": "David Cameron",
+        "d": "Boris Johnson"
+      },
+      "CorrectAnswer": "a"
+    },
+    {
+      "Question": "Who was the first British Prime Minister to be assassinated?",
+      "Options": {
+        "a": "Robert Peel",
+        "b": "Spencer Perceval",
+        "c": "William Pitt the Younger",
+        "d": "Harold Macmillan"
+      },
+      "CorrectAnswer": "b"
+    },
+    {
+      "Question": "Who was the first female Prime Minister of the United Kingdom?",
+      "Options": {
+        "a": "Margaret Thatcher",
+        "b": "Theresa May",
+        "c": "Angela Merkel",
+        "d": "Jacinda Ardern"
+      },
+      "CorrectAnswer": "a"
+    }
+    {
+        "Link":"https://www.youtube.com/watch?v=2-IFEUntcZc"
+        "Question":"Government is a group of people who make rules"
+        "CorrectAnswer":"True"
+        "Question":"The word government comes from a latin word"
+        "CorrectAnswer":"False"
+        "Question":"Monarchy is when the country is ruled by a prime minister"
+        "CorrectAnswer":"False"
+        "Question":"There are three types of movement; monarchy, democracy and dictatorship"
+        "CorrectAnswer":"True"
+    }
+    
+  ],
+  "Conservation": [
+    {
+      "Question": "What is the primary goal of conservation biology?",
+      "Options": {
+        "A": "Exploiting natural resources for human benefit",
+        "B": "Protecting and preserving biodiversity and ecosystems",
+        "C": "Promoting urbanization and industrialization",
+        "D": "Increasing the rate of species extinction"
+      },
+      "CorrectAnswer": "B"
+    },
+    {
+      "Question": "Which international organization is known for its efforts to conserve and protect natural and cultural heritage sites around the world?",
+      "Options": {
+        "A": "Greenpeace",
+        "B": "World Wildlife Fund (WWF)",
+        "C": "United Nations Environmental Programme (UNEP)",
+        "D": "United Nations Educational, Scientific and Cultural Organization (UNESCO)"
+      },
+      "CorrectAnswer": "D"
+    },
+    {
+      "Question": "What term describes the practice of setting aside areas of land or water for the protection of wildlife and their habitats?",
+      "Options": {
+        "A": "Pollution",
+        "B": "Deforestation",
+        "C": "Dilution",
+        "D": "Protected Areas"
+      },
+      "CorrectAnswer": "D"
+    },
+    {
+      "Question": "Which gas, when released into the atmosphere in excess, is a major contributor to global warming and is a concern in conservation efforts?",
+      "Options": {
+        "A": "Nitrogen",
+        "B": "Oxygen",
+        "C": "Carbon dioxide (CO2)",
+        "D": "Hydrogen"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "What is the name of the international treaty aimed at regulating international trade in endangered species of wild animals and plants?",
+      "Options": {
+        "A": "CITES (Convention on International Trade in Endangered Species of Wild Fauna and Flora)",
+        "B": "NAFTA (North American Free Trade Agreement)",
+        "C": "UNFCCC (United Nations Framework Convention on Climate Change)",
+        "D": "IUCN (International Union for Conservation of Nature)"
+      },
+      "CorrectAnswer": "A"
+    }
+    {
+        "Link":"https://www.youtube.com/watch?v=pEx6XeBh1yE"
+        "Question":"In the vertical forest, the amount of trees would normally fill two hectares of woodland"
+        "CorrectAnswer":"True"
+        "Question":"The vertical forest is in Salford"
+        "CorrectAnswer":"False"
+        "Question":"Two million trees have been planted in the last 45 years in Singapore"
+        "CorrectAnswer":"True"
+        "Question":"To help with conservation, the waterways are not cleaned"
+        "CorrectAnswer":"False"
+    }
+  ],
+  "Celebrities": [
+    {
+      "Question": "Who is the English actor known for his portrayal of Captain Jack Sparrow in the 'Pirates of the Caribbean' film series?",
+      "Options": {
+        "A": "Daniel Radcliffe",
+        "B": "Hugh Grant",
+        "C": "Tom Hardy",
+        "D": "Johnny Depp"
+      },
+      "CorrectAnswer": "D"
+    },
+    {
+      "Question": "Which English singer-songwriter released the album '21,' featuring hit songs like 'Rolling in the Deep' and 'Someone Like You'?",
+      "Options": {
+        "A": "Adele",
+        "B": "Ed Sheeran",
+        "C": "Sam Smith",
+        "D": "Ellie Goulding"
+      },
+      "CorrectAnswer": "A"
+    },
+    {
+      "Question": "Who is the famous English physicist and author of the best-selling book 'A Brief History of Time'?",
+      "Options": {
+        "A": "Charles Darwin",
+        "B": "Richard Dawkins",
+        "C": "Stephen Hawking",
+        "D": "Brian Cox"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "Which English actress played the role of Hermione Granger in the 'Harry Potter' film series?",
+      "Options": {
+        "A": "Emma Stone",
+        "B": "Emma Roberts",
+        "C": "Emma Thompson",
+        "D": "Emma Watson"
+      },
+      "CorrectAnswer": "D"
+    },
+    {
+      "Question": "Who is the English football (soccer) legend known for his long and successful career with Manchester United and the England national team?",
+      "Options": {
+        "A": "David Beckham",
+        "B": "Wayne Rooney",
+        "C": "Steven Gerrard",
+        "D": "Frank Lampard"
+      },
+      "CorrectAnswer": "A"
+    }
+    {
+        "Link":"https://www.youtube.com/watch?v=oaFHXOsAMi0"
+        "Question":"Joe doesn’t like footbal"
+        "CorrectAnswer":"False"
+        "Question":"Joe plays football with his little sister Bella"
+        "CorrectAnswer":"True"
+        "Question":"Bella usually missed the ball when playing football"
+        "CorrectAnswer":"True"
+        "Question":"The football coach is called Mr Burnley"
+        "CorrectAnswer":"False"
+    }
+  ],
+  "Law": [
+    {
+      "Question": "What is the highest court of appeal in the United Kingdom for civil cases?",
+      "Options": {
+        "A": "House of Commons",
+        "B": "House of Lords",
+        "C": "Supreme Court",
+        "D": "Court of Appeal"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "In English criminal law, what is the term for a formal accusation that a person has committed a crime and is brought to trial?",
+      "Options": {
+        "A": "Verdict",
+        "B": "Sentence",
+        "C": "Indictment",
+        "D": "Bail"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "Who is responsible for making and enacting laws in the United Kingdom?",
+      "Options": {
+        "A": "The Prime Minister",
+        "B": "The Monarch",
+        "C": "The Parliament",
+        "D": "The House of Lords"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "What is the age of criminal responsibility in England and Wales?",
+      "Options": {
+        "A": "10 years old",
+        "B": "14 years old",
+        "C": "16 years old",
+        "D": "18 years old"
+      },
+      "CorrectAnswer": "A"
+    },
+    {
+      "Question": "Which English legal document is a written order from a court that instructs someone to do something or refrain from doing something?",
+      "Options": {
+        "A": "Warran",
+        "B": "Summons",
+        "C": "Subpoena",
+        "D": "Injunction"
+      },
+      "CorrectAnswer": "D"
+    }
+    {
+        "Link":"https://www.youtube.com/watch?v=TyP09S0UEzA"
+        "Question":"Rights allow people to do whatever they want"
+        "CorrectAnswer":"False"
+        "Question":"Laws are a set of rules that protect people and the things they own"
+        "CorrectAnswer":"True"
+        "Question":"A responsibility is a duty or something that people must not do"
+        "CorrectAnswer":"False"
+        "Question":"Laws help citizens live safely and fairly with one another"
+        "CorrectAnswer":"True"
+    }
+  ],
+  "Sport": [
+    {
+      "Question": "What is the most popular sport in England in terms of both participation and viewership?",
+      "Options": {
+        "A": "Cricket",
+        "B": "Rugby",
+        "C": "Football (Soccer)",
+        "D": "Tennis"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "Which iconic tennis tournament is held annually in Wimbledon, London, and is one of the four Grand Slam events?",
+      "Options": {
+        "A": "The US Open",
+        "B": "The French Open",
+        "C": "The Australian Open",
+        "D": "The Wimbledon Championships"
+      },
+      "CorrectAnswer": "D"
+    },
+    {
+      "Question": "What is the traditional ballroom dance that originated in England and is known for its graceful and elegant movements?",
+      "Options": {
+        "A": "Salsa",
+        "B": "Tango",
+        "C": "Waltz",
+        "D": "Hip-hop"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "Which English cycling race covers a challenging route through the Yorkshire Dales, Lake District, and other scenic areas?",
+      "Options": {
+        "A": "Tour de France",
+        "B": "Giro d'Italia",
+        "C": "Tour de Yorkshire",
+        "D": "Vuelta a España"
+      },
+      "CorrectAnswer": "C"
+    },
+    {
+      "Question": "What is the name of the famous horse race held annually near Liverpool, known for its challenging jumps and obstacles?",
+      "Options": {
+        "A": "The Grand National",
+        "B": "The Epsom Derby",
+        "C": "The Cheltenham Gold Cup",
+        "D": "The Kentucky Derby"
+      },
+      "CorrectAnswer": "A"
+    }
+    {
+        "Link":"https://www.youtube.com/watch?v=oaFHXOsAMi0 "
+        "Question":"The kings and queens were considered celebrities"
+        "CorrectAnswer":"True"
+        "Question":"The word celebrities were founded in 1900s"
+        "CorrectAnswer":"False"
+        "Question":"Wilde was one of the first celebrities who became famous"
+        "CorrectAnswer":"True"
+        "Question":"Andy Warhol used 18th century technology to promote himself"
+        "CorrectAnswer":"False"
+    }
+  ]
+}
