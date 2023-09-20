@@ -30,22 +30,22 @@ function generateElements(data) {
     });
   } 
 
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        data = JSON.parse(this.responseText);
-        console.log(data)
-        generateElements(data)
-    }
-  };
-  xmlhttp.open("GET", "http://localhost:4000", true);
-  xmlhttp.send();
-  
-  function check(thistopic, correctanswer) {
-    let answervalue = document.getElementById(thistopic).value;
-    if (+answervalue == +correctanswer) {
-      alert("Correct");
-    } else {
-      alert("Not Correct");
-    }
-  }
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+    data = JSON.parse(this.responseText);
+    console.log(data)
+    generateElements(data)
+}
+};
+xmlhttp.open("GET", "http://localhost:4000", true);
+xmlhttp.send();
+
+function check(thistopic, correctanswer) {
+let answervalue = document.getElementById(thistopic).value;
+if (+answervalue == +correctanswer) {
+    alert("Correct");
+} else {
+    alert("Not Correct");
+}
+}

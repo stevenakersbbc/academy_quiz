@@ -11,7 +11,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(jsonData.encode())
 
     #Add a post method to allow metrics sending back
-
+    
     def do_POST(self):
         post_len = int(self.headers.get('Content-Length'))
         post_body = self.rfile.read(post_len)
@@ -22,6 +22,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 jsonData = json.loads(open('myquizdata.json').read())
+print(jsonData)
 telemetry = json.loads(open('telemetry.json').read())
 httpd = HTTPServer(('localhost', 4000), SimpleHTTPRequestHandler)
 httpd.serve_forever()
