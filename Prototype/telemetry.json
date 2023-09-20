@@ -1,1 +1,25 @@
-{"page_views": 32, "topics": {"history": {"answers": 6, "correct_answers": 5, "correct_answer_rate": 83.33333333333333}, "geography": {"answers": 1, "correct_answers": 0, "correct_answer_rate": 0}}}
+{
+  "page_views": 1,
+  "topics": {
+    "all_topics": {
+      "answers": 3,
+      "correct_answers": 2,
+      "correct_answer_rate": 66.66666666666667
+    },
+    "history": {
+      "answers": 1,
+      "correct_answers": 1,
+      "correct_answer_rate": 100
+    },
+    "geography": {
+      "answers": 1,
+      "correct_answers": 1,
+      "correct_answer_rate": 100
+    },
+    "flowers": {
+      "answers": 1,
+      "correct_answers": 0,
+      "correct_answer_rate": 0
+    }
+  }
+}

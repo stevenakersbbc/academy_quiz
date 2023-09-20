@@ -1,6 +1,26 @@
 import json
+import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
+def handle_answer_message(topic, correct):
+    now = time.gmtime()
+
+    if ("topics" not in telemetry):
+        telemetry["topics"] = {}
+    if (topic not in telemetry["topics"]):
+        telemetry["topics"][topic] = {}
+    if ("answers" not in telemetry["topics"][topic]):
+        telemetry["topics"][topic]["answers"] = 0
+    if ("correct_answers" not in telemetry["topics"][topic]):
+        telemetry["topics"][topic]["correct_answers"] = 0
+    if ("correct_answer_rate" not in telemetry["topics"][topic]):
+        telemetry["topics"][topic]["correct_answer_rate"] = 0
+        
+    telemetry["topics"][topic]["answers"] += 1
+    if correct:
+        telemetry["topics"][topic]["correct_answers"] += 1
+        
+    telemetry["topics"][topic]["correct_answer_rate"] = 100.0 * telemetry["topics"][topic]["correct_answers"] / telemetry["topics"][topic]["answers"]
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
@@ -36,23 +56,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             topic = post_body["topic"]
             correct = post_body["correct"]
 
-            if ("topics" not in telemetry):
-                telemetry["topics"] = {}
-            if (topic not in telemetry["topics"]):
-                telemetry["topics"][topic] = {}
-            if ("answers" not in telemetry["topics"][topic]):
-                telemetry["topics"][topic]["answers"] = 0
-            if ("correct_answers" not in telemetry["topics"][topic]):
-                telemetry["topics"][topic]["correct_answers"] = 0
-            if ("correct_answer_rate" not in telemetry["topics"][topic]):
-                telemetry["topics"][topic]["correct_answer_rate"] = 0
-                
-            telemetry["topics"][topic]["answers"] += 1
-            if correct:
-                telemetry["topics"][topic]["correct_answers"] += 1
-
-            telemetry["topics"][topic]["correct_answer_rate"] = 100.0 * telemetry["topics"][topic]["correct_answers"] / telemetry["topics"][topic]["answers"]
-
+            handle_answer_message("all_topics", correct)
+            handle_answer_message(topic, correct)
         else:
             if ("invalid_requests" not in telemetry):
                 telemetry["invalid_requests"] = 0
