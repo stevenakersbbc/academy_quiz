@@ -6,6 +6,7 @@ function generateElements(data) {
     let ans1 = element.quizquestions[0].answers[0];
     let ans2 = element.quizquestions[0].answers[1];
     let ans3 = element.quizquestions[0].answers[2];
+    let buttonName = `${topic}-button`
 
     let mytemplate = `<div>
         <p>Question - ${ques}</p>
@@ -22,7 +23,7 @@ function generateElements(data) {
                 <li>${ans3}</li>
             </ol>
         </p>
-        <button onclick="check('${topic}', ${ans})">Check this answer</button>
+        <button id="${buttonName}" onclick="check('${topic}', ${ans})">Check this answer</button>
         <br/><br/>
       </div>`;
 
@@ -42,10 +43,13 @@ xmlhttp.open("GET", "http://localhost:4000", true);
 xmlhttp.send();
 
 function check(thistopic, correctanswer) {
-let answervalue = document.getElementById(thistopic).value;
-if (+answervalue == +correctanswer) {
-    alert("Correct");
-} else {
-    alert("Not Correct");
-}
+  //Disable user input once the question is answered
+  document.getElementById(`${thistopic}-button`).disabled = true;
+  document.getElementById(`${thistopic}`).disabled = true;
+  let answervalue = document.getElementById(thistopic).value;
+  if (+answervalue == +correctanswer) {
+      alert("Correct");
+  } else {
+      alert("Not Correct");
+  }
 }
