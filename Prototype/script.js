@@ -46,6 +46,11 @@ function generateElements(data) {
     })
   } 
 
+
+send_post(JSON.stringify({
+  title: "view"
+}));
+
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
@@ -60,15 +65,34 @@ function check(thistopic, questionId, correctanswer) {
   //Disable user input once the question is answered
   let buttonName = `${thistopic}-${questionId}`;
   document.getElementById(`${buttonName}-button`).disabled = true;
-    document.getElementById(buttonName).disabled = true;
+  document.getElementById(buttonName).disabled = true;
   let answervalue = document.getElementById(buttonName).value;
-  
+  let is_correct = false;
   if (+answervalue == +correctanswer) {
       alert("Correct");
+      is_correct = true;
       totalScore++;
   } else {
-    alert("Not Correct");
+      alert("Not Correct");
   }
+
+  send_post(JSON.stringify({
+    title: "answer",
+    topic: thistopic,
+    correct: is_correct
+  }))
+}
+
+function send_post(message_body){
+  fetch("http://localhost:4000", {
+  method: "POST",
+  body: message_body,
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+  })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
 }
 
 function submitQuestions() {
