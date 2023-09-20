@@ -26,8 +26,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         print(post_body)
 
 
-
-jsonData = json.loads(open('myquizdata.json').read())
+jsonData = json.loads(open('questions.json').read())
 print(jsonData)
 telemetry = json.loads(open('telemetry.json').read())
 httpd = HTTPServer(('localhost', 4000), SimpleHTTPRequestHandler)
