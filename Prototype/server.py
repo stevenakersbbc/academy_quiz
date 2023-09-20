@@ -8,7 +8,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
-        self.wfile.write(jsonData.encode())
+        self.wfile.write(json.dumps(jsonData, ensure_ascii=True).encode('utf-8'))
 
     #Add a post method to allow metrics sending back
 
@@ -21,7 +21,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 
-jsonData = json.loads(open('myquizdata.json').read())
-telemetry = json.loads(open('telemetry.json').read())
+jsonData = json.loads(open('Prototype/myquizdata.json').read())
+telemetry = json.loads(open('Prototype/telemetry.json').read())
 httpd = HTTPServer(('localhost', 4000), SimpleHTTPRequestHandler)
 httpd.serve_forever()
