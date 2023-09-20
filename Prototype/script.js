@@ -51,6 +51,7 @@ send_post(JSON.stringify({
   title: "view"
 }));
 
+
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
@@ -58,8 +59,9 @@ if (this.readyState == 4 && this.status == 200) {
     generateElements(data)
 }
 };
-xmlhttp.open("GET", "http://localhost:4000", true);
+xmlhttp.open("GET", "http://localhost:4000?data=questions", true);
 xmlhttp.send();
+
 
 function check(thistopic, questionId, correctanswer) {
   //Disable user input once the question is answered
@@ -84,6 +86,7 @@ function check(thistopic, questionId, correctanswer) {
 }
 
 function send_post(message_body){
+  let answer_as_json;
   fetch("http://localhost:4000", {
   method: "POST",
   body: message_body,
@@ -92,7 +95,11 @@ function send_post(message_body){
   }
   })
   .then((response) => response.json())
-  .then((json) => console.log(json));
+  .then((json) => {
+    //console.log(json)
+    answer_as_json = json }
+    );
+  return answer_as_json;
 }
 
 function submitQuestions() {

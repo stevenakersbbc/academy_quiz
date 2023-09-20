@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import json
   
 # x axis values
 x = [1,2,3]
@@ -18,3 +19,13 @@ plt.title('My first graph!')
   
 # function to show the plot
 plt.show()
+
+json_data = json.loads(open('telemetry.json').read())
+menu = True
+while menu :
+
+    menu_option = input(""" 
+1 - View interest over time per subject
+                        
+ANY OTHER KEY - EXIT
+ > """)

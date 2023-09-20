@@ -2,6 +2,69 @@ import json
 import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
+def write_time_info(json_location, now) :
+    if ("answer_times" not in json_location):
+        json_location["answer_times"] = {}
+    if ("all_days" not in json_location["answer_times"]):
+        json_location["answer_times"]["all_days"] = {}
+    if ("all_hours" not in json_location["answer_times"]["all_days"]):
+        json_location["answer_times"]["all_days"]["all_hours"] = {}
+    if ("all_minutes" not in json_location["answer_times"]["all_days"]["all_hours"]):
+        json_location["answer_times"]["all_days"]["all_hours"]["all_minutes"]= 0
+        
+    json_location["answer_times"]["all_days"]["all_hours"]["all_minutes"] += 1
+
+    if (now.tm_min not in json_location["answer_times"]["all_days"]["all_hours"]):
+        json_location["answer_times"]["all_days"]["all_hours"][now.tm_min] = 0
+
+    json_location["answer_times"]["all_days"]["all_hours"][now.tm_min] += 1
+
+
+    if (now.tm_hour not in json_location["answer_times"]["all_days"]):
+        json_location["answer_times"]["all_days"][now.tm_hour] = {}
+    if ("all_minutes" not in json_location["answer_times"]["all_days"][now.tm_hour]):
+        json_location["answer_times"]["all_days"][now.tm_hour]["all_minutes"] = 0
+
+    json_location["answer_times"]["all_days"][now.tm_hour]["all_minutes"] += 1
+
+    
+    if (now.tm_min not in json_location["answer_times"]["all_days"][now.tm_hour]):
+        json_location["answer_times"]["all_days"][now.tm_hour][now.tm_min] = 0
+
+    json_location["answer_times"]["all_days"][now.tm_hour][now.tm_min] += 1
+
+
+    if (now.tm_wday not in json_location["answer_times"]):
+        json_location["answer_times"][now.tm_wday] = {}
+    if ("all_hours" not in json_location["answer_times"][now.tm_wday]):
+        json_location["answer_times"][now.tm_wday]["all_hours"] = {}
+    if ("all_minutes" not in json_location["answer_times"][now.tm_wday]["all_hours"]):
+        json_location["answer_times"][now.tm_wday]["all_hours"]["all_minutes"]= 0
+        
+    json_location["answer_times"][now.tm_wday]["all_hours"]["all_minutes"] += 1
+
+
+    if (now.tm_min not in json_location["answer_times"][now.tm_wday]["all_hours"]):
+        json_location["answer_times"][now.tm_wday]["all_hours"][now.tm_min] = 0
+
+    json_location["answer_times"][now.tm_wday]["all_hours"][now.tm_min] += 1
+
+
+    if (now.tm_hour not in json_location["answer_times"][now.tm_wday]):
+        json_location["answer_times"][now.tm_wday][now.tm_hour] = {}
+    if ("all_minutes" not in json_location["answer_times"][now.tm_wday][now.tm_hour]):
+        json_location["answer_times"][now.tm_wday][now.tm_hour]["all_minutes"] = 0
+
+    json_location["answer_times"][now.tm_wday][now.tm_hour]["all_minutes"] += 1
+
+    
+    if (now.tm_min not in json_location["answer_times"][now.tm_wday][now.tm_hour]):
+        json_location["answer_times"][now.tm_wday][now.tm_hour][now.tm_min] = 0
+
+    json_location["answer_times"][now.tm_wday][now.tm_hour][now.tm_min] += 1
+    
+
+
 def handle_answer_message(topic, correct, now):
     #Make sure that the relevant keys exist
     if ("topics" not in telemetry):
@@ -23,67 +86,9 @@ def handle_answer_message(topic, correct, now):
         
     telemetry["topics"][topic]["correct_answer_rate"] = 100.0 * telemetry["topics"][topic]["correct_answers"] / telemetry["topics"][topic]["answers"]
 
-    if ("answer_times" not in telemetry["topics"][topic]):
-        telemetry["topics"][topic]["answer_times"] = {}
-    if ("all_days" not in telemetry["topics"][topic]["answer_times"]):
-        telemetry["topics"][topic]["answer_times"]["all_days"] = {}
-    if ("all_hours" not in telemetry["topics"][topic]["answer_times"]["all_days"]):
-        telemetry["topics"][topic]["answer_times"]["all_days"]["all_hours"] = {}
-    if ("all_minutes" not in telemetry["topics"][topic]["answer_times"]["all_days"]["all_hours"]):
-        telemetry["topics"][topic]["answer_times"]["all_days"]["all_hours"]["all_minutes"]= 0
-        
-    telemetry["topics"][topic]["answer_times"]["all_days"]["all_hours"]["all_minutes"] += 1
-
-    if (now.tm_min not in telemetry["topics"][topic]["answer_times"]["all_days"]["all_hours"]):
-        telemetry["topics"][topic]["answer_times"]["all_days"]["all_hours"][now.tm_min] = 0
-
-    telemetry["topics"][topic]["answer_times"]["all_days"]["all_hours"][now.tm_min] += 1
+    write_time_info(telemetry["topics"][topic], now)
 
 
-    if (now.tm_hour not in telemetry["topics"][topic]["answer_times"]["all_days"]):
-        telemetry["topics"][topic]["answer_times"]["all_days"][now.tm_hour] = {}
-    if ("all_minutes" not in telemetry["topics"][topic]["answer_times"]["all_days"][now.tm_hour]):
-        telemetry["topics"][topic]["answer_times"]["all_days"][now.tm_hour]["all_minutes"] = 0
-
-    telemetry["topics"][topic]["answer_times"]["all_days"][now.tm_hour]["all_minutes"] += 1
-
-    
-    if (now.tm_min not in telemetry["topics"][topic]["answer_times"]["all_days"][now.tm_hour]):
-        telemetry["topics"][topic]["answer_times"]["all_days"][now.tm_hour][now.tm_min] = 0
-
-    telemetry["topics"][topic]["answer_times"]["all_days"][now.tm_hour][now.tm_min] += 1
-
-
-    if (now.tm_wday not in telemetry["topics"][topic]["answer_times"]):
-        telemetry["topics"][topic]["answer_times"][now.tm_wday] = {}
-    if ("all_hours" not in telemetry["topics"][topic]["answer_times"][now.tm_wday]):
-        telemetry["topics"][topic]["answer_times"][now.tm_wday]["all_hours"] = {}
-    if ("all_minutes" not in telemetry["topics"][topic]["answer_times"][now.tm_wday]["all_hours"]):
-        telemetry["topics"][topic]["answer_times"][now.tm_wday]["all_hours"]["all_minutes"]= 0
-        
-    telemetry["topics"][topic]["answer_times"][now.tm_wday]["all_hours"]["all_minutes"] += 1
-
-
-    if (now.tm_min not in telemetry["topics"][topic]["answer_times"][now.tm_wday]["all_hours"]):
-        telemetry["topics"][topic]["answer_times"][now.tm_wday]["all_hours"][now.tm_min] = 0
-
-    telemetry["topics"][topic]["answer_times"][now.tm_wday]["all_hours"][now.tm_min] += 1
-
-
-    if (now.tm_hour not in telemetry["topics"][topic]["answer_times"][now.tm_wday]):
-        telemetry["topics"][topic]["answer_times"][now.tm_wday][now.tm_hour] = {}
-    if ("all_minutes" not in telemetry["topics"][topic]["answer_times"][now.tm_wday][now.tm_hour]):
-        telemetry["topics"][topic]["answer_times"][now.tm_wday][now.tm_hour]["all_minutes"] = 0
-
-    telemetry["topics"][topic]["answer_times"][now.tm_wday][now.tm_hour]["all_minutes"] += 1
-
-    
-    if (now.tm_min not in telemetry["topics"][topic]["answer_times"][now.tm_wday][now.tm_hour]):
-        telemetry["topics"][topic]["answer_times"][now.tm_wday][now.tm_hour][now.tm_min] = 0
-
-    telemetry["topics"][topic]["answer_times"][now.tm_wday][now.tm_hour][now.tm_min] += 1
-    
-    
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
@@ -91,7 +96,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
-        self.wfile.write(json.dumps(jsonData, ensure_ascii=True).encode('utf-8'))
+
+        URLsplit = self.path.split("?")[1:]
+        print(URLsplit)
+        if len(URLsplit) >= 1:
+            queries = URLsplit[0]
+            if queries == "data=questions":
+                self.wfile.write(json.dumps(question_data, ensure_ascii=True).encode('utf-8'))
+
 
     #Add a post method to allow metrics sending back
     def do_OPTIONS(self):
@@ -110,11 +122,20 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         post_len = int(self.headers.get('Content-Length'))
         post_body = json.loads(self.rfile.read(post_len))
 
-        
+
+        #if post_body["title"] == "data_request":
+                #self.wfile.write(json.dumps(jsonData, ensure_ascii=True).encode('utf-8'))
+                #return
         if post_body["title"] == "view":
             if ("page_views" not in telemetry):
                 telemetry["page_views"] = 0
             telemetry["page_views"] += 1
+            
+            if ("page_activity_time_data" not in telemetry):
+                telemetry["page_activity_time_data"] = {}
+
+            write_time_info(telemetry["page_activity_time_data"], time.gmtime())
+
         elif post_body["title"] == "answer":
             topic = post_body["topic"]
             correct = post_body["correct"]
@@ -122,6 +143,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
             handle_answer_message("all_topics", correct, now)
             handle_answer_message(topic, correct, now)
+        elif post_body["title"] == "new_submission":
+            nickname = post_body["nickname"]
+            score = post_body["score"]
+
+
         else:
             if ("invalid_requests" not in telemetry):
                 telemetry["invalid_requests"] = 0
@@ -131,8 +157,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         json.dump(telemetry, open("telemetry.json", "w"))
         self.wfile.write("{\"recieved\":true}".encode('utf-8'))
 
-jsonData = json.loads(open('questions.json').read())
-print(jsonData)
+question_data = json.loads(open('questions.json').read())
+leaderboard =  json.loads(open('questions.json').read())
 telemetry = json.loads(open('telemetry.json').read())
 httpd = HTTPServer(('localhost', 4000), SimpleHTTPRequestHandler)
 httpd.serve_forever()
