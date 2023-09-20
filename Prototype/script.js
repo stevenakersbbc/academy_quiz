@@ -35,6 +35,11 @@ function generateElements(data) {
       });
   } 
 
+
+send_post(JSON.stringify({
+  title: "view"
+}));
+
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
@@ -52,24 +57,23 @@ function check(thistopic, correctanswer) {
   document.getElementById(`${thistopic}`).disabled = true;
   let answervalue = document.getElementById(thistopic).value;
   if (+answervalue == +correctanswer) {
-    fetch("http://localhost:4000", {
-        method: "POST",
-        body: JSON.stringify({
-          userId: 1,
-          title: "Fix my bugs",
-          completed: false
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-    })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
       alert("Correct");
       totalScore++;
   } else {
-    alert("Not Correct");
+      alert("Not Correct");
   }
+}
+
+function send_post(message_body){
+  fetch("http://localhost:4000", {
+  method: "POST",
+  body: message_body,
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+  })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
 }
 
 function submitQuestions() {

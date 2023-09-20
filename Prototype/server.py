@@ -21,11 +21,19 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     
     def do_POST(self):
         post_len = int(self.headers.get('Content-Length'))
-        post_body = self.rfile.read(post_len)
+        post_body = json.loads(self.rfile.read(post_len))
 
-        print(post_body)
+        
+        if post_body["title"] == "view":
+            if ("page_views" not in telemetry):
+                telemetry["page_views"] = 0
+            telemetry["page_views"] += 1
+        else:
+            if ("invalid_requests" not in telemetry):
+                telemetry["invalid_requests" not in telemetry] = 0
+            telemetry["invalid_requests"] += 1
 
-
+        json.dump(telemetry, open("telemetry.json", "w"))
 
 jsonData = json.loads(open('myquizdata.json').read())
 print(jsonData)
