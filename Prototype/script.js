@@ -8,11 +8,11 @@ function incrementTopic(topicName, correct) {
   if (topicName in topicResults) {
     list = topicResults[topicName];
     list[0] += correct ? 1 : 0;
-    list[1] += 1
   }
 }
 //Used to track total topic question count
 function incrementTopicTotal(topicName) {
+  if (topicName == "History") {console.log(topicResults['History'])}
   if (topicName in topicResults) {
     list = topicResults[topicName];
     list[1] += 1
@@ -23,7 +23,7 @@ function incrementTopicTotal(topicName) {
 
 function topicBreakdown() {
   let topicHTML = "";
-  for (topic in topicResults) {
+  for (let topic in topicResults) {
     let result = topicResults[topic];
     topicHTML += `
     ${topic} correct: ${result[0]}/${result[1]}
@@ -58,6 +58,7 @@ function generateElements(data) {
         let q1,q2,q3,q4;
         let a1,a2,a3,a4;
         for (let l = 0; l < 4; l++) {
+          incrementTopicTotal(topic);
           switch (l) {
             case 0:
               q1 = currentQ.One.Question;
@@ -90,6 +91,7 @@ function generateElements(data) {
         
       } else {
         questionCount++;
+        incrementTopicTotal(topic);
         //Multiple choice question
         let ques = currentQ.Question;
         let ans = currentQ.CorrectAnswer;
@@ -137,7 +139,6 @@ function generateElements(data) {
         `
         document.getElementById(sectionName).innerHTML += mytemplate;
       }
-      incrementTopicTotal(topic);
     }      
   })
 } 
