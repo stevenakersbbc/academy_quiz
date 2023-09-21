@@ -280,6 +280,7 @@ function submitQuestions() {
   showElement("mainContent", false);
   showElement("nav", false);
   showElement("submit", false);
+  showElement("name", false);
 
   //Create text with "You scored: x% total!"
   //And create the breakdown of results per topic
@@ -287,7 +288,7 @@ function submitQuestions() {
   let roundedResult = Math.round(percentageResult * 10) / 10
   let resultsHTML = `
   <div id=resultsText>
-    You scored: ${roundedResult}% total!
+    Good job ${name} you scored: ${roundedResult}% total!
     <hr>
     Total correct: ${totalScore}/${questionCount}
     <br>
