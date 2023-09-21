@@ -1,3 +1,5 @@
+showElement("error", false);
+
 let totalScore = 0;
 let questionCount = 0;
 let topicResults = {};
@@ -400,6 +402,13 @@ function loadLeaderboard() {
 }
 
 var xmlhttp = new XMLHttpRequest();
+xmlhttp.onerror = function() {
+  console.log("No data!")
+  showElement("nav",false)
+  showElement("mainContent",false)
+  showElement("resultsArea",false)
+  showElement("error", true);
+}
 xmlhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
     data = JSON.parse(this.responseText);
@@ -414,7 +423,10 @@ var xmlhttp1 = new XMLHttpRequest();
   xmlhttp1.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     leaderboardData = JSON.parse(this.responseText);
-    console.log(leaderboardData);
+    console.log(leaderboardData)
+    if (!leaderboardData) {
+      
+    }
   }
   };
 xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
