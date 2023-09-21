@@ -423,10 +423,6 @@ var xmlhttp1 = new XMLHttpRequest();
   xmlhttp1.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     leaderboardData = JSON.parse(this.responseText);
-    console.log(leaderboardData)
-    if (!leaderboardData) {
-      
-    }
   }
   };
 xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
