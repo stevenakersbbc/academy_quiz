@@ -1,6 +1,7 @@
 let totalScore = 0;
 let questionCount = 0;
 let topicResults = {}
+let topics = []
 
 //Used to track correct/incorrect
 function incrementTopic(topicName, correct) {
@@ -33,113 +34,139 @@ function topicBreakdown() {
 }
 
 function generateElements(data) {  
-    data.quiz.forEach((category, index) => {
-      let categoryName = Object.keys(category)[0];
-      let questions = data.quiz[index][categoryName]
-      for (let i = 0; i < questions.length; i++) {
-        //Loops through each questions
+  data.quiz.forEach((category, index) => {
+    let categoryName = Object.keys(category)[0];
+    let questions = data.quiz[index][categoryName]
+    for (let i = 0; i < questions.length; i++) {
+      //Loops through each questions
 
-        //detect if video question and load different
+      //detect if video question and load different
 
-        
-        let currentQ = questions[i];
-        let topic = categoryName;
-        let questionName = `${topic}-${i}`
-        let buttonName = `${questionName}-button`;
+      
+      let currentQ = questions[i];
+      let topic = categoryName;
+      let questionName = `${topic}-${i}`
+      let buttonName = `${questionName}-button`;
 
-        let mytemplate = "";
+      let mytemplate = "";
 
-        let link = currentQ.Link;
-        if (link) {
-          questionCount += 4;
-          //Video question
-          //Load all the questions and answers
-          let q1,q2,q3,q4;
-          let a1,a2,a3,a4;
-          for (let l = 0; l < 4; l++) {
-            switch (l) {
-              case 0:
-                q1 = currentQ.One.Question;
-                a1 = currentQ.One.Answer
-              case 1:
-                q2 = currentQ.Two.Question;
-                a2 = currentQ.Two.Answer
-              case 2:
-                q3 = currentQ.Three.Question;
-                a3 = currentQ.Three.Answer
-              case 3:
-                q4 = currentQ.Four.Question;
-                a4 = currentQ.Four.Answer;
-            }
+      let link = currentQ.Link;
+      if (link) {
+        questionCount += 4;
+        //Video question
+        //Load all the questions and answers
+        let q1,q2,q3,q4;
+        let a1,a2,a3,a4;
+        for (let l = 0; l < 4; l++) {
+          switch (l) {
+            case 0:
+              q1 = currentQ.One.Question;
+              a1 = currentQ.One.Answer;
+            case 1:
+              q2 = currentQ.Two.Question;
+              a2 = currentQ.Two.Answer;
+            case 2:
+              q3 = currentQ.Three.Question;
+              a3 = currentQ.Three.Answer;
+            case 3:
+              q4 = currentQ.Four.Question;
+              a4 = currentQ.Four.Answer;
           }
-
-          //questionName and buttonName get disabled after answer
-          mytemplate = `<div>
-          <p>Video Question</p>
-          <iframe id="ytplayer" type="text/html" width="640" height="390" src=${link} frameborder="0"/></iframe>
-          <ol>
-              <li>${q1} <select id="${questionName}-0"><option value="false">False</option><option value="true">True</option></select> </li>
-              <li>${q2} <select id="${questionName}-1"><option value="false">False</option><option value="true">True</option></select> </li> 
-              <li>${q3} <select id="${questionName}-2"><option value="false">False</option><option value="true">True</option></select> </li>
-              <li>${q4} <select id="${questionName}-3"><option value="false">False</option><option value="true">True</option></select> </li>
-          </ol>
-          <button id="${buttonName}" onclick="check('${topic}', ${i}, true, [${a1},${a2},${a3},${a4}])">Check these answer</button>
-          <br/><br/>
-          </div>`;
-          
-        } else {
-          questionCount++;
-          //Multiple choice question
-          let ques = currentQ.Question;
-          let ans = currentQ.CorrectAnswer;
-          let ans1 = currentQ.Options.a;
-          let ans2 = currentQ.Options.b;
-          let ans3 = currentQ.Options.c;
-          let ans4 = currentQ.Options.d;
-
-          mytemplate = `<div>
-            <p>Question - ${ques}</p>
-            <p>
-                <label for="${questionName}">Choose an answer:</label>
-                <select name="${topic}" id="${questionName}">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-                <ol>
-                    <li>${ans1}</li>
-                    <li>${ans2}</li>
-                    <li>${ans3}</li>
-                    <li>${ans4}</li>
-                </ol>
-            </p>
-            <button id="${buttonName}" onclick="check('${topic}', ${i}, false, ${ans})">Check this answer</button>
-            <br/><br/>
-          </div>`;
         }
-        document.getElementById("mainContent").innerHTML += mytemplate;
-        incrementTopicTotal(topic);
-      }      
-    })
-  } 
 
+        //questionName and buttonName get disabled after answer
+        mytemplate = `<div>
+        <p>Video Question</p>
+        <iframe id="ytplayer" type="text/html" width="640" height="390" src=${link} frameborder="0"/></iframe>
+        <ol>
+            <li>${q1} <select id="${questionName}-0"><option value="false">False</option><option value="true">True</option></select> </li>
+            <li>${q2} <select id="${questionName}-1"><option value="false">False</option><option value="true">True</option></select> </li> 
+            <li>${q3} <select id="${questionName}-2"><option value="false">False</option><option value="true">True</option></select> </li>
+            <li>${q4} <select id="${questionName}-3"><option value="false">False</option><option value="true">True</option></select> </li>
+        </ol>
+        <button id="${buttonName}" onclick="check('${topic}', ${i}, true, [${a1},${a2},${a3},${a4}])">Check these answer</button>
+        <br/><br/>
+        </div>`;
+        
+      } else {
+        questionCount++;
+        //Multiple choice question
+        let ques = currentQ.Question;
+        let ans = currentQ.CorrectAnswer;
+        let ans1 = currentQ.Options.a;
+        let ans2 = currentQ.Options.b;
+        let ans3 = currentQ.Options.c;
+        let ans4 = currentQ.Options.d;
 
-send_post(JSON.stringify({
-  title: "view"
-}));
+        mytemplate = `<div>
+          <p>Question - ${ques}</p>
+          <p>
+              <label for="${questionName}">Choose an answer:</label>
+              <select name="${topic}" id="${questionName}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+              <ol>
+                  <li>${ans1}</li>
+                  <li>${ans2}</li>
+                  <li>${ans3}</li>
+                  <li>${ans4}</li>
+              </ol>
+          </p>
+          <button id="${buttonName}" onclick="check('${topic}', ${i}, false, ${ans})">Check this answer</button>
+          <br/><br/>
+        </div>`;
+      }
 
+      let sectionName = topic + "Content";
+      let topicSection = document.getElementById(sectionName);
+      if (topicSection) {
+        //Append to the correct topic section
+        topicSection.innerHTML += mytemplate;
+      } else {
+        topics.push(sectionName); //Store the section name for nav (hiding / showing)
+        createSectionButton(sectionName, topic);
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-if (this.readyState == 4 && this.status == 200) {
-    data = JSON.parse(this.responseText);
-    generateElements(data)
+        //Create the correct topic section and its section button
+        document.getElementById("mainContent").innerHTML += `
+        <div id="${sectionName}">
+
+        </div>
+        `
+        document.getElementById(sectionName).innerHTML += mytemplate;
+      }
+      incrementTopicTotal(topic);
+    }      
+  })
+} 
+
+function createSectionButton(sectionName, displayName) {
+  document.getElementById("nav").innerHTML += `
+  <button onclick="navigate('${sectionName}')">${displayName}</button>
+  `
 }
-};
-xmlhttp.open("GET", "http://localhost:4000?data=questions", true);
-xmlhttp.send();
 
+function navigate(sectionName) {
+  let welcomeText = document.getElementById("welcomeText");
+  if (welcomeText) { welcomeText.remove(); }
+  showElement("mainContent", true);
+  showElement("resultsArea", true);
+
+  for (let i = 0; i < topics.length; i++) {
+    let topic = topics[i];
+    if (topic== sectionName) {
+      showElement(topic, true);
+    } else {
+      showElement(topic, false);
+    }
+  }
+}
+
+function showElement(id, shouldDisplay) {
+  document.getElementById(id).style.display = shouldDisplay ? "block" : "none";
+}
 
 function check(thistopic, questionId, isVideoQ, correctanswer) {
   let is_correct
@@ -207,8 +234,12 @@ function send_post(message_body){
 
 function submitQuestions() {
   //Hide the questions and the submit button
-  document.getElementById("mainContent").style.display = "none"
-  document.getElementById("submit").style.display = "none"
+  showElement("mainContent", false);
+  showElement("nav", false);
+  showElement("submit", false);
+  // document.getElementById("mainContent").style.display = "none"
+  // document.getElementById("nav").style.display = "none"
+  // document.getElementById("submit").style.display = "none"
 
   //Create text with "You scored: x% total!"
   //And create the breakdown of results per topic
@@ -224,5 +255,18 @@ function submitQuestions() {
   </div>
   `
   document.getElementById("resultsArea").innerHTML += resultsHTML
-  console.log(topicResults)
 }
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+    data = JSON.parse(this.responseText);
+    generateElements(data)
+}
+};
+xmlhttp.open("GET", "http://localhost:4000?data=questions", true);
+xmlhttp.send();
+
+send_post(JSON.stringify({
+  title: "view"
+}));
