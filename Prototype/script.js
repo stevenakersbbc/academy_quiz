@@ -32,6 +32,15 @@ function topicBreakdown() {
   return topicHTML;
 }
 
+function typing() {
+  let name = document.getElementById("name").value;
+  let submitButton = document.getElementById("submit");
+  submitButton.innerHTML = "Submit";
+  if (!name) {
+    submitButton.innerHTML += " Anonymously";
+  }
+}
+
 function generateElements(data) {  
   data.quiz.forEach((category, index) => {
     let categoryName = Object.keys(category)[0];
