@@ -46,7 +46,7 @@ function typing() {
 function usernameVerify(nickname){
     if (nickname.length < 2) {
       alert("Nickname needs to be atleast 2 characters");
-      return False;
+      return false;
     }
     //var letters = /^[A-Za-z]+$/;
 
@@ -156,7 +156,7 @@ function generateElements(data) {
         //Create the correct topic section and its section button
         document.getElementById("mainContent").innerHTML += `
         <div id="${sectionName}">
-
+        
         </div>
         `
         document.getElementById(sectionName).innerHTML += mytemplate;
@@ -267,7 +267,14 @@ function send_post(message_body){
 function submitQuestions() {
   //if has name: veryify name
   const name = document.getElementById("name").value;
-
+  if (name) {
+    if (!usernameVerify(name)) {
+      alert("Invalid name!")
+      return;
+    }
+  } else {
+    name = "Anonymous"
+  }
 
   //Hide the questions and the submit button
   showElement("mainContent", false);
@@ -287,24 +294,60 @@ function submitQuestions() {
     ${topicBreakdown()}
     <br>
     <h3>Leaderboard</h3>
-    ${generateLeaderboards()}
+    ${generateBoardsHTML()}
   </div>
   `
-  document.getElementById("resultsArea").innerHTML += resultsHTML
+  document.getElementById("resultsArea").innerHTML += resultsHTML;
+  populateLeaderboards();
   submitLeaderboardAttempt(currentTopic, "TEST TEST, THIS IS A TEST", totalScore)
   // loadLeaderboard();
 }
 
-function generateLeaderboards() {
-  for (let topic in topics) {
+function generateBoardsHTML() {
+  let boardHTML = `
+  `
+  for (let index in topics) {
     //Create a leaderboard for each topic
-    let boardHTML = `
-    <div id="${topic}-leaderboard" class="leaderboard"></div><br> 
+    boardHTML += `
+    <div id="${topics[index]}-leaderboard" class="leaderboard">${topics[index].substring(0, topics[index].length-7)}:<br></div><br> 
     `
-    let topicData = leaderboardData[topics[topic]];
-    console.log(topicData);
   }
-  debugger;
+  return boardHTML;
+}
+
+function populateLeaderboards() {
+  for (let index in topics) {
+    let data = leaderboardData;
+
+    let topicName = topics[index];
+    let topicData = leaderboardData[topicName];
+    if (!topicData) { console.log("No table for: " + topicName); continue; }
+
+    let tableContainer = document.getElementById(topicName + "-leaderboard");
+    var table = document.createElement("table"); // Create HTML table element
+    table.id = topicName+"-table";
+
+    // Add the first row
+    var topHeaderRow = table.insertRow(0);
+    var headerCell1 = topHeaderRow.insertCell(0);
+    var headerCell2 = topHeaderRow.insertCell(1);
+
+    headerCell1.innerHTML = "<b>Nickname</b>"; //Add the headers
+    headerCell2.innerHTML = "<b>Score</b>";
+
+    // Loop and populate table with data
+    for (var j = 0; j < data[topicName].length; j++) {
+      var rowData = data[topicName][j];
+      var row = table.insertRow(j + 1); // start at 1 and incriment
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+
+      cell1.innerHTML = rowData.name; //insert words
+      cell2.innerHTML = rowData.score;
+    }
+    // update table
+    tableContainer.appendChild(table);
+  }
 }
 
 function submitLeaderboardAttempt(topic, nickname, score){
@@ -330,12 +373,6 @@ function loadLeaderboard() {
   const data = leaderboardData;
   console.log(data);
 
-  // data.quiz.forEach((category, index) => {
-  //   let categoryName = Object.keys(category)[0];
-  //   let questions = data.quiz[index][categoryName]
-  //   for (let i = 0; i < questions.length; i++) {
-  //     //Loops through each questions
-
   var tableContainer = document.getElementById("table-container"); // Reference for the table
   var table = document.createElement("table"); // Create HTML table element
 
@@ -346,11 +383,6 @@ function loadLeaderboard() {
 
   headerCell1.innerHTML = "<b>Nickname</b>"; //Add the headers
   headerCell2.innerHTML = "<b>Score</b>";
-
-  Object.keys(data).forEach((categoryName) => {
-
-  })
-  debugger;
 
   // Loop and populate table with data
   for (var j = 0; j < data.history.length; j++) {
@@ -381,6 +413,7 @@ var xmlhttp1 = new XMLHttpRequest();
   xmlhttp1.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     leaderboardData = JSON.parse(this.responseText);
+    console.log(leaderboardData);
   }
   };
 xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
