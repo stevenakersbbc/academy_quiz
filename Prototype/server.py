@@ -59,7 +59,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(json.dumps(question_data, ensure_ascii=True).encode('utf-8'))
             if queries == "data=leaderboard":
                 self.wfile.write(json.dumps(leaderboard, ensure_ascii=True).encode('utf-8'))
-                print("kill kill death viomlence")
 
 
     #Add a post method to allow metrics sending back
@@ -116,6 +115,76 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         elif post_body["title"] == "new_submission":
             nickname = post_body["nickname"]
             score = post_body["score"]
+            topic = post_body["topic"]
+
+            if (topic not in leaderboard):
+                leaderboard[topic] = []
+
+            if len(leaderboard[topic]) == 0:
+                leaderboard[topic].append(
+                    {
+                        "name": nickname,
+                        "score": score,
+                    }
+                )
+                json.dump(leaderboard, open("leaderboard.json", "w"))
+                return
+
+            name_already_exists = -1
+
+            for id in range(len(leaderboard[topic])):
+                if leaderboard[topic][id]["name"] == nickname:
+                    if leaderboard[topic][id]["score"] < score:
+                        name_already_exists = id
+                    else: 
+                        json.dump(leaderboard, open("leaderboard.json", "w"))
+                        return
+
+            if name_already_exists != -1:
+                leaderboard[topic].pop(name_already_exists)
+                
+            if len(leaderboard[topic]) == 0:
+                leaderboard[topic].append(
+                    {
+                        "name": nickname,
+                        "score": score,
+                    }
+                )
+                json.dump(leaderboard, open("leaderboard.json", "w"))
+                return
+
+            leaderboard_position = -1
+            current_position = 0
+
+            for person in leaderboard[topic]:
+                if leaderboard_position == -1:
+                    if person["score"] == score:
+                        if person["name"] > nickname:
+                            leaderboard_position = current_position 
+                        else:
+                            leaderboard_position = current_position + 1
+                    elif person["score"] < score:
+                        leaderboard_position = current_position
+                            
+                current_position += 1
+            
+            if leaderboard_position == -1 and len(leaderboard[topic]):
+                leaderboard[topic].append({
+                    "name": nickname,
+                    "score": score
+                })
+
+
+            if leaderboard_position != -1:
+                leaderboard[topic].insert(leaderboard_position, {
+                    "name": nickname,
+                    "score": score
+                })
+
+            while len(leaderboard[topic]) > 10:
+                leaderboard[topic].pop(10)
+
+            json.dump(leaderboard, open("leaderboard.json", "w"))
 
 
         else:
@@ -123,6 +192,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 telemetry["invalid_requests"] = 0
             telemetry["invalid_requests"] += 1
 
+        print (post_body["title"])
             
         json.dump(telemetry, open("telemetry.json", "w"))
         self.wfile.write("{\"recieved\":true}".encode('utf-8'))

@@ -299,7 +299,7 @@ function submitQuestions() {
   `
   document.getElementById("resultsArea").innerHTML += resultsHTML;
   populateLeaderboards();
-  submitLeaderboardAttempt(currentTopic, "TEST TEST, THIS IS A TEST", totalScore)
+  submitLeaderboardAttempt(currentTopic, name, totalScore)
   // loadLeaderboard();
 }
 
