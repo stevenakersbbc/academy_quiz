@@ -300,10 +300,37 @@ function submitQuestions() {
     ${generateBoardsHTML()}
   </div>
   `
-  document.getElementById("resultsArea").innerHTML += resultsHTML;
-  populateLeaderboards();
   submitLeaderboardAttempt(currentTopic, name, totalScore)
+
+  var xmlhttp1 = new XMLHttpRequest();
+  xmlhttp1.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    leaderboardData = JSON.parse(this.responseText);
+  }
+  };
+  xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
+  xmlhttp1.send();
+
+  leaderboard_temp(resultsHTML);
+
   // loadLeaderboard();
+}
+
+function leaderboard_temp(resultsHTML){
+  var xmlhttp1 = new XMLHttpRequest();
+  xmlhttp1.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    console.log("data is dating");
+
+    leaderboardData = JSON.parse(this.responseText);
+    console.log(leaderboardData);
+
+    document.getElementById("resultsArea").innerHTML += resultsHTML;
+    populateLeaderboards();
+  }
+  };
+  xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
+  xmlhttp1.send();
 }
 
 function generateBoardsHTML() {
@@ -423,10 +450,6 @@ var xmlhttp1 = new XMLHttpRequest();
   xmlhttp1.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     leaderboardData = JSON.parse(this.responseText);
-    console.log(leaderboardData)
-    if (!leaderboardData) {
-      
-    }
   }
   };
 xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);

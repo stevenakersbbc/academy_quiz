@@ -1,4 +1,5 @@
 import json
+import os
 import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
@@ -56,9 +57,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         if len(URLsplit) >= 1:
             queries = URLsplit[0]
             if queries == "data=questions":
+                question_data = json.loads(open('questions.json').read())
                 self.wfile.write(json.dumps(question_data, ensure_ascii=True).encode('utf-8'))
             if queries == "data=leaderboard":
+                time.sleep(0.1)
+                leaderboard =  json.loads(open('leaderboard.json').read())
                 self.wfile.write(json.dumps(leaderboard, ensure_ascii=True).encode('utf-8'))
+                print (leaderboard)
 
 
     #Add a post method to allow metrics sending back
@@ -113,6 +118,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             handle_answer_message("all_topics", correct, now)
             handle_answer_message(topic, correct, now)
         elif post_body["title"] == "new_submission":
+            leaderboard =  json.loads(open('leaderboard.json').read())
+
             nickname = post_body["nickname"]
             score = post_body["score"]
             topic = post_body["topic"]
@@ -197,8 +204,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         json.dump(telemetry, open("telemetry.json", "w"))
         self.wfile.write("{\"recieved\":true}".encode('utf-8'))
 
-question_data = json.loads(open('questions.json').read())
-leaderboard =  json.loads(open('leaderboard.json').read())
 telemetry = json.loads(open('telemetry.json').read())
 httpd = HTTPServer(('localhost', 4000), SimpleHTTPRequestHandler)
 httpd.serve_forever()
