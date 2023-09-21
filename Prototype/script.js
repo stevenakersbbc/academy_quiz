@@ -161,6 +161,10 @@ function navigate(sectionName) {
     let topic = topics[i];
     if (topic== sectionName) {
       showElement(topic, true);
+      send_post(JSON.stringify({
+        title: "view",
+        type: topic
+      }));
     } else {
       showElement(topic, false);
     }
@@ -171,8 +175,9 @@ function showElement(id, shouldDisplay) {
   document.getElementById(id).style.display = shouldDisplay ? "block" : "none";
 }
 
+
 function check(thistopic, questionId, isVideoQ, correctanswer) {
-  let is_correct
+  let is_correct = false;
   let questionName = `${thistopic}-${questionId}`;
   document.getElementById(`${questionName}-button`).disabled = true;
   if (isVideoQ) {
@@ -213,8 +218,8 @@ function check(thistopic, questionId, isVideoQ, correctanswer) {
   
   send_post(JSON.stringify({
     title: "answer",
+    correct: is_correct,
     topic: thistopic,
-    correct: is_correct
   }))
 }
 
@@ -300,6 +305,19 @@ function loadLeaderboard() {
   tableContainer.appendChild(table);
 }
 
+function getLeaderboard() {
+  var xmlhttp1 = new XMLHttpRequest();
+  xmlhttp1.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+      //data2 = JSON.parse(this.responseText);
+      console.log(this.responseText);
+      return JSON.parse(this.responseText)
+  }
+  };
+  xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
+  xmlhttp1.send();
+}
+
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
@@ -311,5 +329,8 @@ xmlhttp.open("GET", "http://localhost:4000?data=questions", true);
 xmlhttp.send();
 
 send_post(JSON.stringify({
-  title: "view"
+  title: "view",
+  type: "page"
 }));
+
+console.log(getLeaderboard());
