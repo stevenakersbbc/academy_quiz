@@ -1,3 +1,16 @@
+function getLeaderboard() {
+  var xmlhttp1 = new XMLHttpRequest();
+  xmlhttp1.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+      //data2 = JSON.parse(this.responseText);
+      console.log(this.responseText);
+      return JSON.parse(this.responseText)
+  }
+  };
+  xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
+  xmlhttp1.send();
+}
+
 //Data storing nicknames and results, this will be changed for a network request
 const data = {
   "history": [

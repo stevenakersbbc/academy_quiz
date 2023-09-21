@@ -19,67 +19,6 @@ def write_time_info(json_location, name, now) :
                 json_location[name][day][hour][minute] += 1
 
 
-"""
-    if ("all_days" not in json_location["answer_times"]):
-        json_location["answer_times"]["all_days"] = {}
-    if ("all_hours" not in json_location["answer_times"]["all_days"]):
-        json_location["answer_times"]["all_days"]["all_hours"] = {}
-    if ("all_minutes" not in json_location["answer_times"]["all_days"]["all_hours"]):
-        json_location["answer_times"]["all_days"]["all_hours"]["all_minutes"]= 0
-        
-    json_location["answer_times"]["all_days"]["all_hours"]["all_minutes"] += 1
-
-    if (now.tm_min not in json_location["answer_times"]["all_days"]["all_hours"]):
-        json_location["answer_times"]["all_days"]["all_hours"][now.tm_min] = 0
-
-    json_location["answer_times"]["all_days"]["all_hours"][now.tm_min] += 1
-
-
-    if (now.tm_hour not in json_location["answer_times"]["all_days"]):
-        json_location["answer_times"]["all_days"][now.tm_hour] = {}
-    if ("all_minutes" not in json_location["answer_times"]["all_days"][now.tm_hour]):
-        json_location["answer_times"]["all_days"][now.tm_hour]["all_minutes"] = 0
-
-    json_location["answer_times"]["all_days"][now.tm_hour]["all_minutes"] += 1
-
-    
-    if (now.tm_min not in json_location["answer_times"]["all_days"][now.tm_hour]):
-        json_location["answer_times"]["all_days"][now.tm_hour][now.tm_min] = 0
-
-    json_location["answer_times"]["all_days"][now.tm_hour][now.tm_min] += 1
-
-
-    if (now.tm_wday not in json_location["answer_times"]):
-        json_location["answer_times"][now.tm_wday] = {}
-    if ("all_hours" not in json_location["answer_times"][now.tm_wday]):
-        json_location["answer_times"][now.tm_wday]["all_hours"] = {}
-    if ("all_minutes" not in json_location["answer_times"][now.tm_wday]["all_hours"]):
-        json_location["answer_times"][now.tm_wday]["all_hours"]["all_minutes"]= 0
-        
-    json_location["answer_times"][now.tm_wday]["all_hours"]["all_minutes"] += 1
-
-
-    if (now.tm_min not in json_location["answer_times"][now.tm_wday]["all_hours"]):
-        json_location["answer_times"][now.tm_wday]["all_hours"][now.tm_min] = 0
-
-    json_location["answer_times"][now.tm_wday]["all_hours"][now.tm_min] += 1
-
-
-    if (now.tm_hour not in json_location["answer_times"][now.tm_wday]):
-        json_location["answer_times"][now.tm_wday][now.tm_hour] = {}
-    if ("all_minutes" not in json_location["answer_times"][now.tm_wday][now.tm_hour]):
-        json_location["answer_times"][now.tm_wday][now.tm_hour]["all_minutes"] = 0
-
-    json_location["answer_times"][now.tm_wday][now.tm_hour]["all_minutes"] += 1
-
-    
-    if (now.tm_min not in json_location["answer_times"][now.tm_wday][now.tm_hour]):
-        json_location["answer_times"][now.tm_wday][now.tm_hour][now.tm_min] = 0
-
-    json_location["answer_times"][now.tm_wday][now.tm_hour][now.tm_min] += 1
-    """        
-
-
 def handle_answer_message(topic, correct, now):
     #Make sure that the relevant keys exist
     if ("topics" not in telemetry):
