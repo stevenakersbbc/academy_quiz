@@ -2,6 +2,7 @@ let totalScore = 0;
 let questionCount = 0;
 let topicResults = {}
 let topics = []
+let currentTopic = "invalid";
 
 //Used to track correct/incorrect
 function incrementTopic(topicName, correct) {
@@ -165,6 +166,7 @@ function navigate(sectionName) {
         title: "view",
         type: topic
       }));
+      currentTopic = topic;
     } else {
       showElement(topic, false);
     }
@@ -264,7 +266,32 @@ function submitQuestions() {
   </div>
   `
   document.getElementById("resultsArea").innerHTML += resultsHTML
+  submitLeaderboardAttempt(currentTopic, "TEST TEST, THIS IS A TEST", totalScore)
   loadLeaderboard();
+}
+
+
+function submitLeaderboardAttempt(topic, nickname, score){
+  console.log("submitting")
+  send_post(JSON.stringify({
+    title: "new_submission",
+    topic: topic,
+    nickname: nickname,
+    score: score
+  }))
+}
+
+function getLeaderboard() {
+  var xmlhttp1 = new XMLHttpRequest();
+  xmlhttp1.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+      //data2 = JSON.parse(this.responseText);
+      console.log(this.responseText);
+      return JSON.parse(this.responseText)
+  }
+  };
+  xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
+  xmlhttp1.send();
 }
 
 function loadLeaderboard() {
