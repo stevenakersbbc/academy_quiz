@@ -1,3 +1,4 @@
 {
-    
+    "HistoryContent": [{"name": "TEST TEST", "score":10}],
+    "LawContent": [{"name": "TEST TEST", "score":10},{"name": "Better name", "score":20}]
 }

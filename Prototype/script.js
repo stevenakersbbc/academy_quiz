@@ -1,8 +1,9 @@
 let totalScore = 0;
 let questionCount = 0;
-let topicResults = {}
-let topics = []
+let topicResults = {};
+let topics = [];
 let currentTopic = "invalid";
+let leaderboardData;
 
 //Used to track correct/incorrect
 function incrementTopic(topicName, correct) {
@@ -264,6 +265,10 @@ function send_post(message_body){
 }
 
 function submitQuestions() {
+  //if has name: veryify name
+  const name = document.getElementById("name").value;
+
+
   //Hide the questions and the submit button
   showElement("mainContent", false);
   showElement("nav", false);
@@ -282,15 +287,25 @@ function submitQuestions() {
     ${topicBreakdown()}
     <br>
     <h3>Leaderboard</h3>
-    <div id="table-container" class="leaderboard"></div> 
-    <script src="leaderboard.js"></script>
+    ${generateLeaderboards()}
   </div>
   `
   document.getElementById("resultsArea").innerHTML += resultsHTML
   submitLeaderboardAttempt(currentTopic, "TEST TEST, THIS IS A TEST", totalScore)
-  loadLeaderboard();
+  // loadLeaderboard();
 }
 
+function generateLeaderboards() {
+  for (let topic in topics) {
+    //Create a leaderboard for each topic
+    let boardHTML = `
+    <div id="${topic}-leaderboard" class="leaderboard"></div><br> 
+    `
+    let topicData = leaderboardData[topics[topic]];
+    console.log(topicData);
+  }
+  debugger;
+}
 
 function submitLeaderboardAttempt(topic, nickname, score){
   console.log("submitting")
@@ -302,24 +317,9 @@ function submitLeaderboardAttempt(topic, nickname, score){
   }))
 }
 
-function getLeaderboard() {
-  var xmlhttp1 = new XMLHttpRequest();
-  xmlhttp1.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-      //data2 = JSON.parse(this.responseText);
-      console.log(this.responseText);
-      return JSON.parse(this.responseText)
-  }
-  };
-  xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
-  xmlhttp1.send();
-}
-
 function loadLeaderboard() {
-  console.log("TEST")
-
   //Data storing nicknames and results, this will be changed for a network request
-  const data = {
+  const data1 = {
     "history": [
         { "name": "team groovy", "score": 20 },
         { "name": "team ungroovy", "score": 18 },
@@ -327,6 +327,14 @@ function loadLeaderboard() {
         { "name": "imagine it continues like this for 10 people in the list", "score": 18 }
     ]
   };
+  const data = leaderboardData;
+  console.log(data);
+
+  // data.quiz.forEach((category, index) => {
+  //   let categoryName = Object.keys(category)[0];
+  //   let questions = data.quiz[index][categoryName]
+  //   for (let i = 0; i < questions.length; i++) {
+  //     //Loops through each questions
 
   var tableContainer = document.getElementById("table-container"); // Reference for the table
   var table = document.createElement("table"); // Create HTML table element
@@ -338,6 +346,11 @@ function loadLeaderboard() {
 
   headerCell1.innerHTML = "<b>Nickname</b>"; //Add the headers
   headerCell2.innerHTML = "<b>Score</b>";
+
+  Object.keys(data).forEach((categoryName) => {
+
+  })
+  debugger;
 
   // Loop and populate table with data
   for (var j = 0; j < data.history.length; j++) {
@@ -362,6 +375,16 @@ if (this.readyState == 4 && this.status == 200) {
 };
 xmlhttp.open("GET", "http://localhost:4000?data=questions", true);
 xmlhttp.send();
+
+
+var xmlhttp1 = new XMLHttpRequest();
+  xmlhttp1.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    leaderboardData = JSON.parse(this.responseText);
+  }
+  };
+xmlhttp1.open("GET", "http://localhost:4000?data=leaderboard", true);
+xmlhttp1.send();
 
 send_post(JSON.stringify({
   title: "view",
