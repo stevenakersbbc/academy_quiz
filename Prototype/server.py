@@ -60,7 +60,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 question_data = json.loads(open('questions.json').read())
                 self.wfile.write(json.dumps(question_data, ensure_ascii=True).encode('utf-8'))
             if queries == "data=leaderboard":
-                time.sleep(0.1)
                 leaderboard =  json.loads(open('leaderboard.json').read())
                 self.wfile.write(json.dumps(leaderboard, ensure_ascii=True).encode('utf-8'))
                 print (leaderboard)

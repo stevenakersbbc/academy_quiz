@@ -268,7 +268,7 @@ function send_post(message_body){
 
 function submitQuestions() {
   //if has name: veryify name
-  const name = document.getElementById("name").value;
+  let name = document.getElementById("name").value;
   if (name) {
     if (!usernameVerify(name)) {
       alert("Invalid name!")
@@ -300,7 +300,9 @@ function submitQuestions() {
     ${generateBoardsHTML()}
   </div>
   `
-  submitLeaderboardAttempt(currentTopic, name, totalScore)
+  if (name != "Anonymous"){
+    submitLeaderboardAttempt(currentTopic, name, totalScore)
+  }
 
   var xmlhttp1 = new XMLHttpRequest();
   xmlhttp1.onreadystatechange = function() {
