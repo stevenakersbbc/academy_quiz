@@ -42,6 +42,18 @@ function typing() {
   }
 }
 
+function usernameVerify(nickname){
+    if (nickname.length < 2) {
+      alert("Nickname needs to be atleast 2 characters");
+      return False;
+    }
+    //var letters = /^[A-Za-z]+$/;
+
+    return /^[A-Za-z0-9]*$/.test(nickname);
+}
+
+
+
 function generateElements(data) {  
   data.quiz.forEach((category, index) => {
     let categoryName = Object.keys(category)[0];
